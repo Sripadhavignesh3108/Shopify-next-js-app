@@ -15,15 +15,17 @@ function Navbar() {
 
   return (
     <nav>
-      <div className="title-container">
-        <img
-          src="https://cdn-icons-png.flaticon.com/128/5968/5968492.png"
-          alt="Next.js logo"
-          width={30}
-          height={30}
-        />
-        <p>Shopify</p>
-      </div>
+      <Link href={"/"} className="navbarLinks">
+        <div className="title-container">
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/5968/5968492.png"
+            alt="Next.js logo"
+            width={30}
+            height={30}
+          />
+          <p>Shopify</p>
+        </div>
+      </Link>
       <div className="navbar-options">
         <div className="hambergerDiv">
           <label className="hamburger">

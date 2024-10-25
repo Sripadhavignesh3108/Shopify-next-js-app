@@ -1,16 +1,16 @@
 "use Client";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Button from "../../../components/buttons/Button";
 import { contextData } from "../../../globalState/store/Store.js";
 
 function ProductID() {
+  const Router = useRouter();
   const contextValues = useContext(contextData);
-  // console.log(contextValues);
   let params = useRef();
-  const [message, setMessage] = useState({});
   const [ProductData, setProduct] = useState(null);
   const [discription, setDis] = useState([]);
+  const [proIsExist, setExist] = useState(false);
   params = useParams();
   useEffect(() => {
     ApiCalling();
@@ -34,15 +34,23 @@ function ProductID() {
     const cart = contextValues?.currentState?.ProductsInCart;
     const isExist = cart.some((each) => each?.id == ProductDetails?.id);
     if (isExist) {
-      setMessage({ state: false, msg: "Product is Already exist in cart" });
+      Router.push("/cart");
     } else {
       contextValues.Dispatcher({
         type: "ADD_PRODUCTTOCART",
         payload: { ...ProductDetails },
       });
-      setMessage({ state: true, msg: "Product Added to Cart Successfully" });
+      setExist(true);
     }
   };
+
+  useEffect(() => {
+    const cart = contextValues?.currentState?.ProductsInCart;
+    const isExist = cart.some((each) => each?.id == ProductData?.id);
+    if (isExist) {
+      setExist(true);
+    }
+  }, [contextValues, params, ProductData]);
   return (
     <div id="each-Product-details">
       {ProductData ? (
@@ -60,12 +68,12 @@ function ProductID() {
                 })}
             </div>
             <div id="footer-of-Product-details-data">
-              <p
+              {/* <p
                 className="MessageInProductDetails"
                 style={message.state ? { color: "green" } : { color: "red" }}
               >
                 {message?.msg}
-              </p>
+              </p> */}
               <p>
                 Rating - <span>{ProductData.rating.rate}/5</span> Price -
                 <span>{ProductData.price} $</span>
@@ -79,7 +87,7 @@ function ProductID() {
                   }}
                 ></Button>
                 <Button
-                  content="Add to Cart"
+                  content={!proIsExist ? "Add to Cart" : "Go to Cart"}
                   style={{
                     margin: "0px 0px 0px 10px",
                     boxShadow: "0px 0px 5px 1px rgba(0,0,0,.155)",

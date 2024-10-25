@@ -16,7 +16,7 @@ function Cart() {
       for (let i of contextValues?.currentState?.ProductsInCart) {
         total += Number(i.price);
       }
-      setTotalPrice(total);
+      setTotalPrice(total.toFixed(2));
     }
   }, [contextValues]);
   return (
