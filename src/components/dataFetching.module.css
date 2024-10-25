@@ -1,0 +1,88 @@
+.backGroundOfProductData {
+min-height: 80vh;
+padding: 30px 0px ;
+}
+
+.rowTitle{
+    text-align: center;
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: 500;
+    background:linear-gradient(120deg, grey,grey,rgb(48, 48, 48),black);
+    color: transparent;
+    -webkit-background-clip: text;
+}
+
+.rowTitle2{
+    position: absolute;
+    transform:translateY(-70px);
+    text-align: center;
+    width: 100%;
+    font-size: 50px;
+    font-weight: 700;
+    opacity: 10%;
+    margin: 0px;
+}
+.eachRowStyle{
+    padding: 40px 0px;
+}
+.collectionOfFasion {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 25px 0px;
+}
+.eachProductStyle{
+  width: 180px;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0.5px rgba(0, 0, 0, 0.292);
+  background-position: center;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  text-wrap:pretty;
+  color: transparent;
+  padding: 5px;
+  transition: all linear 0.5s;
+  cursor: pointer; 
+}
+.eachProductStyle:hover{
+    background-color: rgb(37, 37, 37);
+    background-position-y: -100vh;
+    color: white;
+    scale: 1.1;
+}
+.eachProductStyle p{
+    font-size: 15px;
+    text-align: center;
+}
+.price{
+    margin: 20px;
+}
+.LinkStyles{
+    text-decoration: none;
+    color: inherit;
+}
+
+@media screen and (max-width: 768px) {
+    .eachProductStyle {
+        width: 120px;
+        background-size: 60%;
+        min-height: 170px;
+    }
+        .eachProductStyle p {
+            font-size: 10px;
+        }
+        .rowTitle{
+            font-size: 30px;
+        }
+        .rowTitle2{
+            font-size: 35px;
+                transform: translateY(-55px);
+        }
+}
